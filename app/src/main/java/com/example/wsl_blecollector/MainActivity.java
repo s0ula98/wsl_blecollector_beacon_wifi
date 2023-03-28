@@ -1,14 +1,18 @@
 package com.example.wsl_blecollector;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         //2. 지금 블루투스 사용이 활성화 되어 있는지 체크 한다.
         //3. 안되어 있으면 가능 하도록 설정한다.
         myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+
+        if(permissionCheck == PackageManager.PERMISSION_DENIED){ //위치 권한 확인
+
+            //위치 권한 요청
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        }
 
         bluetoothOnMethod(); //켜기 버튼과 연계
         bluetoothOffMethod();//끄기 버튼과 연계

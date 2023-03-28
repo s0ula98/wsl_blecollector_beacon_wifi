@@ -45,10 +45,6 @@ public class PairingListVeiw extends AppCompatActivity {
     BluetoothAdapter myBluetoothAdapter;
     EditText x_coordinate, y_coordinate, rp, filename;
     protected static UUID MY_UUID;
-    private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy_M_d"); // 날짜 포맷
-    Date date;
-    long mNow;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +82,7 @@ public class PairingListVeiw extends AppCompatActivity {
         });
 
         IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        Log.v("확인1", "12");
         registerReceiver(myReceiver, intentFilter);//onDestory()에서 언레지스터하는 것을 추가해 줄것.
 
         scanAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, scanList);
@@ -141,6 +138,7 @@ public class PairingListVeiw extends AppCompatActivity {
                 //ListView 갱신함
                 //먼저 기존 데이터를 비워주고 시작해야 할듯 중복 추가되는 문제
                 // 해결 위해서...
+                Log.v("확인","확인");
                 short rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,  Short.MIN_VALUE);
                 scanList.add(device.getName() + "\n" + device.getAddress() + "\n" + rssi);
                 scanAdapter.notifyDataSetChanged();
@@ -149,7 +147,6 @@ public class PairingListVeiw extends AppCompatActivity {
     };
 
     private void saveExcel(int blue_size, String[][] bluetooth_excel) {
-        String Date = getDate();
 
         File dir = Environment.getExternalStorageDirectory();
         String abPath = dir.getAbsolutePath(); //패키지명을 구한다.
@@ -254,12 +251,6 @@ public class PairingListVeiw extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), xlsFile.getAbsolutePath() + "에 저장되었습니다", Toast.LENGTH_LONG).show();
             Log.v("엑셀파일", xlsFile.getAbsolutePath());
         }
-    }
-
-    private String getDate(){
-        mNow = System.currentTimeMillis();
-        date = new Date(mNow);
-        return mFormat.format(date);
     }
 
 }
