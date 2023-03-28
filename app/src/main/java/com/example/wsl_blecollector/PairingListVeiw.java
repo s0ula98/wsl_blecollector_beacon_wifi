@@ -82,7 +82,6 @@ public class PairingListVeiw extends AppCompatActivity {
         });
 
         IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        Log.v("확인1", "12");
         registerReceiver(myReceiver, intentFilter);//onDestory()에서 언레지스터하는 것을 추가해 줄것.
 
         scanAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, scanList);
@@ -138,7 +137,6 @@ public class PairingListVeiw extends AppCompatActivity {
                 //ListView 갱신함
                 //먼저 기존 데이터를 비워주고 시작해야 할듯 중복 추가되는 문제
                 // 해결 위해서...
-                Log.v("확인","확인");
                 short rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,  Short.MIN_VALUE);
                 scanList.add(device.getName() + "\n" + device.getAddress() + "\n" + rssi);
                 scanAdapter.notifyDataSetChanged();
