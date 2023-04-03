@@ -47,7 +47,7 @@
                 android:textAlignment="center"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
             <EditText
                 android:id="@+id/y_coordinate"
                 android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                 android:hint="Y좌표"
                 android:textAlignment="center"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
         </LinearLayout>
 
