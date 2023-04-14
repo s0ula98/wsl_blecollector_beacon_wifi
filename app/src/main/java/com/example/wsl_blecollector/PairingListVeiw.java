@@ -43,7 +43,7 @@ public class PairingListVeiw extends AppCompatActivity {
     ArrayList<String> scanList;
     Button bt_cancel, bt_scan, bt_excel;
     BluetoothAdapter myBluetoothAdapter;
-    EditText x_coordinate, y_coordinate, rp, filename;
+    EditText rp, filename;
     protected static UUID MY_UUID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,6 @@ public class PairingListVeiw extends AppCompatActivity {
         bt_scan = (Button) findViewById(R.id.bt_scan);
         bt_excel = (Button) findViewById(R.id.bt_excel);
         listView_scan = (ListView) findViewById(R.id.listview_scan);
-        x_coordinate = (EditText) findViewById(R.id.x_coordinate);
-        y_coordinate = (EditText) findViewById(R.id.y_coordinate);
         rp = (EditText) findViewById(R.id.rp);
         filename = (EditText) findViewById(R.id.filename);
 
@@ -100,10 +98,10 @@ public class PairingListVeiw extends AppCompatActivity {
         bt_excel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int blue_size =scanAdapter.getCount();
+                int blue_size = scanAdapter.getCount();
                 Log.v("아이탬 개수", String.valueOf(blue_size));
-                if(x_coordinate.length() == 0 || y_coordinate.length() == 0 || rp.length() == 0 ) {
-                    Toast.makeText(getApplicationContext(), "좌표 또는 rp 값을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                if (rp.length() == 0 ) {
+                    Toast.makeText(getApplicationContext(), "label 값을 입력해 주세요.", Toast.LENGTH_SHORT).show();
                 } else if(filename.length() == 0) {
                     Toast.makeText(getApplicationContext(), "엑셀 파일 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
                 } else {
@@ -138,7 +136,7 @@ public class PairingListVeiw extends AppCompatActivity {
                 //먼저 기존 데이터를 비워주고 시작해야 할듯 중복 추가되는 문제
                 // 해결 위해서...
                 short rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,  Short.MIN_VALUE);
-                scanList.add(device.getName() + "\n" + device.getAddress() + "\n" + rssi);
+                scanList.add(device.getName() + "\n" + device.getAddress() + "\n" + rssi + '\n' + device.getUuids());
                 scanAdapter.notifyDataSetChanged();
             }
         }
@@ -181,10 +179,6 @@ public class PairingListVeiw extends AppCompatActivity {
                 cell = row.createCell(2);
                 cell.setCellValue(bluetooth_excel[i - rowmax][2]);
                 cell = row.createCell(3);
-                cell.setCellValue(x_coordinate.getText().toString());
-                cell = row.createCell(4);
-                cell.setCellValue(y_coordinate.getText().toString());
-                cell = row.createCell(5);
                 cell.setCellValue(rp.getText().toString());
             }
             File xlsFile = new File(getExternalFilesDir(null), fname);
@@ -214,13 +208,7 @@ public class PairingListVeiw extends AppCompatActivity {
             cell = row.createCell(2); // 3번 셀 생성
             cell.setCellValue("RSSI"); // 3번 셀 값 입력
 
-            cell = row.createCell(3); // 4번 셀 생성
-            cell.setCellValue("X 좌표"); // 4번 셀 값 입력
-
-            cell = row.createCell(4); // 5번 셀 생성
-            cell.setCellValue("Y 좌표"); // 5번 셀 값 입력
-
-            cell = row.createCell(5); // 5번 셀 생성
+            cell = row.createCell(3); // 5번 셀 생성
             cell.setCellValue("rp");    // 6번 셀 값 입력
 
             for (int i = 0; i < blue_size; i++) { // 데이터 엑셀에 입력
@@ -232,10 +220,6 @@ public class PairingListVeiw extends AppCompatActivity {
                 cell = row.createCell(2);
                 cell.setCellValue(bluetooth_excel[i][2]);
                 cell = row.createCell(3);
-                cell.setCellValue(x_coordinate.getText().toString());
-                cell = row.createCell(4);
-                cell.setCellValue(y_coordinate.getText().toString());
-                cell = row.createCell(5);
                 cell.setCellValue(rp.getText().toString());
             }
 

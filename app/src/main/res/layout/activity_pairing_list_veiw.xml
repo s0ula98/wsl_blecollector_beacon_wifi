@@ -33,30 +33,11 @@
                 android:id="@+id/rp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="rp"
+                android:hint="label"
                 android:textAlignment="center"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="number" />
-
-            <EditText
-                android:id="@+id/x_coordinate"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="X좌표"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="numberDecimal|numberSigned" />
-            <EditText
-                android:id="@+id/y_coordinate"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="Y좌표"
-                android:textAlignment="center"
-                android:ems="10"
-                android:inputType="numberDecimal|numberSigned" />
 
         </LinearLayout>
 
