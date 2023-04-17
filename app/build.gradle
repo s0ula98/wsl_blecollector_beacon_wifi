@@ -39,7 +39,9 @@ dependencies {
     implementation files('libs/poi-ooxml-3.17.jar')
     implementation files('libs/poi-ooxml-schemas-3.17.jar')
     implementation files('libs/poi-scratchpad-3.17.jar')
+    implementation 'org.altbeacon:android-beacon-library:2.+'//alt-beacon library
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
 }

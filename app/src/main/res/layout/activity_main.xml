@@ -38,5 +38,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/bt_beacon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="비콘 스캔" />
+
     </LinearLayout>
 </LinearLayout>

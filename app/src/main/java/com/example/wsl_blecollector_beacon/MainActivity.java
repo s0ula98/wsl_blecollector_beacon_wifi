@@ -14,11 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.wsl_blecollector.R;
+
 public class MainActivity extends AppCompatActivity {
 
     final String TAG = "MainActivity";
     int REQUEST_ENABLE_BT = 1;
-    Button bt_on, bt_off, bt_pairing;
+    Button bt_on, bt_off, bt_pairing, bt_beacon;
     BluetoothAdapter myBluetoothAdapter;
     Intent btEnableIntent;
 
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         bt_on = (Button) findViewById(R.id.bt_bluetooth_on);
         bt_off = (Button) findViewById(R.id.bt_bluetooth_off);
         bt_pairing = (Button) findViewById(R.id.bt_pairing);
+        bt_beacon = (Button) findViewById(R.id.bt_beacon);
 
         //1. 지금 이 기기가 블루투스를 지원 하는지 안하는지 체크 한다. 요즘도 안되는게 있나?
         //2. 지금 블루투스 사용이 활성화 되어 있는지 체크 한다.
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         bluetoothOnMethod(); //켜기 버튼과 연계
         bluetoothOffMethod();//끄기 버튼과 연계
         bluetoothPairing();
+        scanBeacon();
 
     }
 
@@ -111,6 +115,27 @@ public class MainActivity extends AppCompatActivity {
                 if(myBluetoothAdapter.isEnabled()) {
                     //새로운 액티비티를 연다.
                     Intent pairingIntent = new Intent(MainActivity.this, PairingListVeiw.class);
+                    startActivity(pairingIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "먼저 블루투스를 활성화 하세요.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void scanBeacon() {
+        bt_beacon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //1.블루투스가 활성화 되어 있어야 한다.
+                //2.새로운 액티비티를 열어서 페어링된 기기 목록을 보여 준다. 리스트뷰 사용함
+                //3.새로운 액티비티에서 기기를 연결한다.
+                //4.새로운 액티비티를 닫는다. 원하는 기기와의 연결확인.
+                //이미 페어링된 기기가 없으면 새로 기기를 검색해야 한다. 여기서는 다루지 않는다.
+                //즉, 다른 기기를 검색하고 페어링하는 단계는 폰의 내장된 블루투스 메뉴에서 하라는 말이다.
+                if(myBluetoothAdapter.isEnabled()) {
+                    //새로운 액티비티를 연다.
+                    Intent pairingIntent = new Intent(MainActivity.this, BeaconListView.class);
                     startActivity(pairingIntent);
                 } else {
                     Toast.makeText(getApplicationContext(), "먼저 블루투스를 활성화 하세요.", Toast.LENGTH_SHORT).show();
