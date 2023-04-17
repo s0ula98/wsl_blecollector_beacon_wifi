@@ -172,7 +172,7 @@ public class BeaconListView extends AppCompatActivity implements com.example.wsl
             }
 
             // 자기 자신을 1초마다 호출
-            handler.sendEmptyMessageDelayed(0, 1000);
+//            handler.sendEmptyMessageDelayed(0, 1000);
         }
     };
 

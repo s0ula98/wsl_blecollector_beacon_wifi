@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.wsl_blecollector",
+  "applicationId": "com.example.wsl_blecollector_beacon",
   "variantName": "release",
   "elements": [
     {
