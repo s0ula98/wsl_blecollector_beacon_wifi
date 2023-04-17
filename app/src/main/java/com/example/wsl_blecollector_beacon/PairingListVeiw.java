@@ -1,4 +1,4 @@
-package com.example.wsl_blecollector;
+package com.example.wsl_blecollector_beacon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.wsl_blecollector.R;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -31,9 +34,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
-import java.text.SimpleDateFormat;
 
 
 public class PairingListVeiw extends AppCompatActivity {
@@ -135,8 +136,10 @@ public class PairingListVeiw extends AppCompatActivity {
                 //ListView 갱신함
                 //먼저 기존 데이터를 비워주고 시작해야 할듯 중복 추가되는 문제
                 // 해결 위해서...
+                Parcelable[] uuidExtra = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID);
+
                 short rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,  Short.MIN_VALUE);
-                scanList.add(device.getName() + "\n" + device.getAddress() + "\n" + rssi + '\n' + device.getUuids());
+                scanList.add(device.getName() + "\n" + device.getAddress() + "\n" + rssi + '\n');
                 scanAdapter.notifyDataSetChanged();
             }
         }

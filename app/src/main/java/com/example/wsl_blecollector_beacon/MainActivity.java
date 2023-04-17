@@ -1,4 +1,4 @@
-package com.example.wsl_blecollector;
+package com.example.wsl_blecollector_beacon;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;

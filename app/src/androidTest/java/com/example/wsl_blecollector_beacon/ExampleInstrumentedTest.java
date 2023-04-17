@@ -1,4 +1,4 @@
-package com.example.wsl_blecollector;
+package com.example.wsl_blecollector_beacon;
 
 import android.content.Context;
 

@@ -20,7 +20,7 @@
         android:theme="@style/Theme.Bluetoothexample"
         tools:targetApi="31">
         <activity
-            android:name=".PairingListVeiw"
+            android:name=".PairingListView"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
