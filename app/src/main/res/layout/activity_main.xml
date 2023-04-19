@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context="com.example.wsl_blecollector_beacon.MainActivity">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -43,6 +43,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="비콘 스캔" />
+        <Button
+            android:id="@+id/bt_wifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WIFI 스캔" />
+
 
     </LinearLayout>
 </LinearLayout>
